@@ -1,0 +1,46 @@
+{
+  "name": "coursesphere-fullstack",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test:e2e": "npm run db:setup && playwright test",
+    "test:e2e:ui": "npm run db:setup && playwright test --ui",
+    "postinstall": "prisma generate",
+    "prisma:generate": "prisma generate",
+    "db:setup": "sqlite3 prisma/dev.db < prisma/migrations/20260509203000_init/migration.sql && node prisma/seed.mjs",
+    "db:seed": "node prisma/seed.mjs"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@prisma/client": "^6.19.0",
+    "@tanstack/react-query": "^5.100.9",
+    "bcryptjs": "^3.0.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "jose": "^6.2.3",
+    "lucide-react": "^1.14.0",
+    "next": "16.2.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-hook-form": "^7.75.0",
+    "tailwind-merge": "^3.5.0",
+    "zod": "^4.4.3",
+    "zustand": "^5.0.13"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.6",
+    "prisma": "^6.19.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
