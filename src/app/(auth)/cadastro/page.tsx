@@ -46,7 +46,7 @@ export default function CadastroPage() {
       <Link className="mb-6 inline-flex items-center gap-2 font-semibold text-[#10201c] lg:hidden" href="/">
         CourseSphere
       </Link>
-      <p className="text-sm font-semibold text-[#247758]">
+      <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#247758]">
         Primeiro acesso
       </p>
       <h1 className="mt-4 text-4xl font-semibold leading-tight text-[#10201c]">
