@@ -27,7 +27,7 @@ export default function Home() {
 
       <section className="mx-auto grid min-h-[calc(100vh-88px)] w-full max-w-7xl gap-10 px-5 pb-10 pt-6 md:px-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
         <div className="max-w-3xl">
-          <p className="max-w-md border-l-2 border-[#247758] pl-4 text-xs font-bold uppercase tracking-[0.2em] text-[#247758]">
+          <p className="max-w-md border-l-2 border-[#247758] pl-4 text-xs font-bold uppercase tracking-[0.18em] text-[#247758]">
             Plataforma para cursos online
           </p>
           <h1 className="font-display mt-8 max-w-4xl text-5xl font-semibold leading-[0.94] text-[#10201c] md:text-7xl lg:text-[5.45rem]">

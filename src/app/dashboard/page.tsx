@@ -95,7 +95,7 @@ export default function DashboardPage() {
 
       <section className="flex flex-col justify-between gap-4 pt-1 md:flex-row md:items-end">
         <div>
-          <p className="text-sm font-semibold text-emerald-700">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-700">
             Biblioteca
           </p>
           <h2 className="mt-1 text-2xl font-semibold text-[#10201c]">
