@@ -56,27 +56,25 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
               </span>
             </span>
           </Link>
-          <div className="flex flex-col items-end gap-1">
-            <div className="flex items-center gap-5">
-              {usuario ? (
-                <span className="hidden text-sm font-semibold text-[#10201c] sm:inline">
+          <div className="flex items-end gap-5">
+            {usuario ? (
+              <p className="hidden text-right sm:block">
+                <span className="block text-sm font-semibold text-[#10201c]">
                   Olá, {firstName}
                 </span>
-              ) : null}
-              <button
-                className="inline-flex h-9 items-center justify-center gap-2 border-b border-[#247758] px-1 text-sm font-semibold text-[#1f684d] transition hover:text-[#10201c] disabled:cursor-not-allowed disabled:opacity-50"
-                type="button"
-                onClick={logout}
-              >
-                <LogOut size={17} />
-                Sair
-              </button>
-            </div>
-            {usuario ? (
-              <span className="hidden text-xs text-slate-500 sm:block">
-                Continue de onde parou
-              </span>
+                <span className="mt-1 block text-xs text-slate-500">
+                  Continue de onde parou
+                </span>
+              </p>
             ) : null}
+            <button
+              className="inline-flex items-center justify-center gap-2 border-b border-[#247758] px-1 pb-1 text-sm font-semibold leading-none text-[#1f684d] transition hover:text-[#10201c] disabled:cursor-not-allowed disabled:opacity-50"
+              type="button"
+              onClick={logout}
+            >
+              <LogOut size={17} />
+              Sair
+            </button>
           </div>
         </div>
       </header>
