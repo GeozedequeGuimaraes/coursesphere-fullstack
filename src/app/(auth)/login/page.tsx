@@ -66,7 +66,7 @@ function LoginForm() {
         </Field>
         {message ? <p className="text-sm text-red-600">{message}</p> : null}
         <Button disabled={isSubmitting} type="submit">
-          {isSubmitting ? "Entrando..." : "Entrar"}
+          Entrar
         </Button>
       </form>
 

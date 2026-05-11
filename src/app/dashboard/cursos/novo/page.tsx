@@ -46,7 +46,7 @@ export default function NovoCursoPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#082f24]/90 via-[#0f3e31]/28 to-transparent" />
           <div className="absolute bottom-8 left-8 right-8 text-white">
-            <p className="text-sm font-semibold text-emerald-100">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-100">
               Estrutura do curso
             </p>
             <h1 className="mt-3 text-3xl font-semibold">Comece pelo essencial.</h1>
@@ -56,7 +56,7 @@ export default function NovoCursoPage() {
           </div>
         </div>
         <div className="rounded-xl border border-emerald-100 bg-white p-6 shadow-sm shadow-emerald-900/5 lg:p-8">
-          <p className="text-sm font-semibold text-emerald-700">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-700">
             Novo curso
           </p>
           <h1 className="mt-3 text-4xl font-semibold leading-none text-[#10201c]">

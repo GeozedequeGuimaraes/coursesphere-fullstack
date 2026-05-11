@@ -54,7 +54,7 @@ export default function DashboardPage() {
         <div className="relative flex min-h-[232px] flex-col justify-between gap-6 lg:min-h-[256px] lg:flex-row lg:items-end">
           <div>
             <span className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-100">
-              Área de trabalho
+              Área de cursos
             </span>
             <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight text-white md:text-5xl">
               Bem-vindo à sua área de cursos.

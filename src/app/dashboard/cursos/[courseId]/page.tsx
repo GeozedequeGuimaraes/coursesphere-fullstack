@@ -123,7 +123,7 @@ export default function CursoDetalhePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/72" />
         <div className="relative flex flex-col justify-between gap-4 md:flex-row md:items-start">
           <div>
-            <span className="text-sm font-semibold text-emerald-700">
+            <span className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-700">
               Detalhes do curso
             </span>
             <h1 className="mt-3 max-w-2xl text-4xl font-semibold leading-tight text-[#10201c]">
