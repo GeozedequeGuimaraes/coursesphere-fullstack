@@ -41,13 +41,17 @@ export default function CursoDetalhePage() {
     queryFn: () => api<{ instructor: Instructor }>("/api/external/instructor"),
   });
 
+  const course = courseQuery.data?.course;
+
   const updateCourse = useMutation({
     mutationFn: (data: CourseInput) =>
       api<{ course: Curso }>(`/api/courses/${params.courseId}`, {
         method: "PUT",
         body: JSON.stringify(data),
       }),
+    onMutate: () => setMessage(""),
     onSuccess: () => {
+      setMessage("");
       setEditingCourse(false);
       queryClient.invalidateQueries({ queryKey: ["course", params.courseId] });
     },
@@ -58,9 +62,32 @@ export default function CursoDetalhePage() {
     mutationFn: (data: LessonInput) =>
       api<{ lesson: Aula }>(`/api/courses/${params.courseId}/lessons`, {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          course: course
+            ? {
+                name: course.name,
+                description: course.description ?? "",
+                startDate: course.startDate,
+                endDate: course.endDate,
+              }
+            : undefined,
+        }),
       }),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["course", params.courseId] }),
+    onMutate: () => setMessage(""),
+    onSuccess: (response) => {
+      setMessage("");
+      queryClient.setQueryData<{ course: Curso }>(["course", params.courseId], (current) =>
+        current
+          ? {
+              course: {
+                ...current.course,
+                lessons: [...(current.course.lessons ?? []), response.lesson],
+              },
+            }
+          : current,
+      );
+    },
     onError: (error) => setMessage(error instanceof ApiError ? error.message : "Erro ao salvar a aula."),
   });
 
@@ -70,7 +97,9 @@ export default function CursoDetalhePage() {
         method: "PUT",
         body: JSON.stringify(data),
       }),
+    onMutate: () => setMessage(""),
     onSuccess: () => {
+      setMessage("");
       setEditingLesson(undefined);
       queryClient.invalidateQueries({ queryKey: ["course", params.courseId] });
     },
@@ -82,7 +111,9 @@ export default function CursoDetalhePage() {
       api(`/api/lessons/${lessonId}`, {
         method: "DELETE",
       }),
+    onMutate: () => setMessage(""),
     onSuccess: () => {
+      setMessage("");
       setLessonToDelete(null);
       queryClient.invalidateQueries({ queryKey: ["course", params.courseId] });
     },
@@ -90,10 +121,10 @@ export default function CursoDetalhePage() {
 
   const deleteCourse = useMutation({
     mutationFn: () => api(`/api/courses/${params.courseId}`, { method: "DELETE" }),
+    onMutate: () => setMessage(""),
     onSuccess: () => router.push("/dashboard"),
   });
 
-  const course = courseQuery.data?.course;
   const lessons = course?.lessons?.filter((lesson) =>
     statusFilter === "all" ? true : lesson.status === statusFilter,
   );
