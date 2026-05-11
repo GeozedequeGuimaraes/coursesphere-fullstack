@@ -12,9 +12,9 @@ Plataforma full stack para organizar cursos online e aulas
 
 </div>
 
-CourseSphere é uma aplicação para organizar cursos online, aulas e rascunhos em um só lugar. A proposta é simples: dar ao instrutor uma área limpa para criar cursos, acompanhar o que já foi publicado e manter o conteúdo com alguma ordem antes de colocar tudo no ar.
+CourseSphere é uma aplicação para organizar cursos online, aulas e rascunhos em um só lugar. A proposta é dar ao instrutor uma área limpa para criar cursos, acompanhar conteúdos publicados e manter a rotina de ensino mais organizada.
 
-Deploy: https://coursesphere-fullstack.vercel.app
+**Deploy:** https://coursesphere-fullstack.vercel.app
 
 ## Telas
 
@@ -26,54 +26,103 @@ Deploy: https://coursesphere-fullstack.vercel.app
 
 ![Login](docs/screenshots/login.png)
 
-## O que o projeto faz
+## Funcionalidades
 
-- cadastro e login de usuário;
+- cadastro, login e logout;
 - sessão com cookie HTTP-only;
-- criação, busca, edição e exclusão de cursos;
-- criação, edição e exclusão de aulas;
-- filtro de aulas por rascunho ou publicada;
-- proteção para cada usuário ver e editar apenas os próprios cursos;
-- sugestão de instrutor convidado usando uma API externa.
+- cursos com criação, busca, edição e exclusão;
+- aulas com criação, edição, exclusão e filtro por status;
+- proteção para cada usuário acessar apenas os próprios cursos;
+- sugestão de instrutor convidado a partir de uma API externa.
 
-## Rodando localmente
+## Como rodar o projeto
 
-Instale as dependências:
+O CourseSphere usa Next.js. As telas ficam em `src/app` e as rotas de API ficam em `src/app/api`, então frontend e backend rodam no mesmo servidor de desenvolvimento.
+
+### 1. Dependências
 
 ```bash
 npm install
 ```
 
-Crie o `.env`:
+### 2. Ambiente
 
 ```bash
 cp .env.example .env
 ```
 
-Prepare o banco:
+O arquivo de exemplo já aponta para o banco SQLite local:
+
+```txt
+DATABASE_URL="file:./dev.db"
+```
+
+### 3. Backend
+
+Prepare o Prisma, crie o banco e rode o seed:
 
 ```bash
 npm run prisma:generate
 npm run db:setup
 ```
 
-Suba o projeto:
+Depois disso, as rotas de API ficam disponíveis em `/api`.
+
+### 4. Frontend
 
 ```bash
 npm run dev
 ```
 
-Depois acesse:
+Acesse:
 
 ```txt
 http://localhost:3000
 ```
 
-Usuário criado pelo seed:
+## Usuário de teste
+
+O seed cria este usuário:
 
 ```txt
-teste@coursesphere.com
-123456
+E-mail: teste@coursesphere.com
+Senha: 123456
+```
+
+Também existe fluxo completo de cadastro pela tela `/cadastro`.
+
+## Deploy
+
+Frontend e backend estão publicados juntos na Vercel:
+
+```txt
+https://coursesphere-fullstack.vercel.app
+```
+
+Para testar o deploy, use o mesmo usuário:
+
+```txt
+E-mail: teste@coursesphere.com
+Senha: 123456
+```
+
+## Docker
+
+Não há configuração Docker neste projeto. A execução local é feita diretamente com Node.js, Prisma e Next.js.
+
+## Testes
+
+O projeto tem testes e2e com Playwright e cenários BDD escritos em Gherkin/Cucumber.
+
+```bash
+npm run test:e2e
+npm run test:bdd
+```
+
+Para conferir apenas se os cenários BDD estão conectados aos steps, sem abrir o navegador:
+
+```bash
+npm run test:bdd:dry
 ```
 
 ## Comandos úteis
@@ -83,16 +132,18 @@ npm run dev
 npm run build
 npm run lint
 npm run test:e2e
+npm run test:bdd
+npm run test:bdd:dry
 npm run db:setup
 ```
 
 ## Stack
 
-Next.js, React, TypeScript, Tailwind CSS, Prisma, SQLite, TanStack Query, Zustand, Zod, React Hook Form e Playwright.
+Next.js, React, TypeScript, Tailwind CSS, Prisma, SQLite, TanStack Query, Zustand, Zod, React Hook Form, Playwright e Cucumber.
 
-## Observação
+## Banco de dados
 
-O projeto usa SQLite para facilitar a demonstração. Em produção, os dados podem voltar ao estado inicial caso o ambiente seja recriado.
+O SQLite foi usado para deixar a avaliação e a execução local mais simples. Em um cenário de produção real, a próxima etapa seria trocar para PostgreSQL ou outro banco persistente gerenciado.
 
 ## Autor
 
